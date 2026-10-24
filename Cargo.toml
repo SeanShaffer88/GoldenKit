@@ -1,0 +1,30 @@
+[package]
+name = "golden-kit"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+authors = ["Sean Shaffer"]
+description = "Golden-file testing for Rust: diff-on-mismatch assertions, a bless workflow, and the golden-bless review tool"
+license = "MIT"
+repository = "https://github.com/SeanShaffer88/GoldenKit"
+keywords = ["testing", "golden", "snapshot"]
+categories = ["development-tools::testing"]
+
+[lib]
+name = "golden_kit"
+
+[[bin]]
+name = "golden-bless"
+path = "src/bin/golden-bless.rs"
+
+# Zero dependencies by default — a testing tool that drags in a
+# dependency tree defeats its own purpose. Adding one requires a
+# written justification in the PR.
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
